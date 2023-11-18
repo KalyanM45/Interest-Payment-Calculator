@@ -1,0 +1,33 @@
+<!-- /your_project_folder/templates/loan_calculator.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Monthly Payment Loan Calculator</h1>
+    
+    <form method="POST" action="/calculate">
+        <label for="principal">Loan Amount:</label>
+        <input type="number" id="principal" name="principal" step="0.01" required>
+
+        <label for="apr">Annual Interest Rate (%):</label>
+        <input type="number" id="apr" name="apr" step="0.01" required>
+
+        <label for="years">Number of Years:</label>
+        <input type="number" id="years" name="years" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if principal and apr and years %}
+        <h2>Monthly Payment:</h2>
+        <p>{{ monthly_payment }}</p>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
